@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Lora, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { AuthProvider } from '@/context/auth-context'
 import './globals.css'
 
 const _lora = Lora({ subsets: ["latin"], weight: ['400', '500', '600', '700'] });
@@ -38,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

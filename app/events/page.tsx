@@ -146,7 +146,7 @@ export default function Events() {
               <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
                 Events
               </h2>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-muted-foreground text-sm rounded-4xl">
                 Cluster seminars, workshops, conferences and cultural programs
               </p>
             </div>

@@ -1,13 +1,38 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { Users, Building2, BookOpen, Microscope, Calendar, Trophy } from 'lucide-react';
 import { Sidebar } from '@/components/sidebar';
 import { Header } from '@/components/header';
 import { MetricCard } from '@/components/metric-card';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function Dashboard() {
   const router = useRouter();
+  const { user, loading } = useAuth();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (!loading) {
+      if (!user) {
+        router.replace('/login');
+      } else {
+        setIsReady(true);
+      }
+    }
+  }, [user, loading, router]);
+
+  if (loading || !isReady) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-background">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+          <p className="text-muted-foreground">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-background">
@@ -26,10 +51,10 @@ export default function Dashboard() {
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
-                  Welcome back, Prof. Dr. Santosh Kumar
+                  Welcome back, {user?.name}
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                  Liberal Arts & Humanities Cluster Management Dashboard - Chandigarh University
+                  Liberal Arts & Humanities Cluster Management Dashboard - {user?.institute} • Chandigarh University
                 </p>
               </div>
               <div className="text-right hidden md:block">

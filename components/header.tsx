@@ -1,10 +1,29 @@
 'use client';
 
-import { Bell, User, ChevronDown, Settings } from 'lucide-react';
+import { Bell, User, ChevronDown, Settings, LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/use-auth';
 
 export function Header() {
+  const router = useRouter();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    router.replace('/login');
+  };
+
+  const getUserInitials = (name: string | undefined) => {
+    if (!name) return '?';
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
   return (
     <header className="h-20 bg-gradient-to-r from-card to-card border-b border-border/50 flex items-center justify-between px-8 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center gap-4">
@@ -26,19 +45,20 @@ export function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-3 hover:bg-secondary transition-all duration-300 px-3 py-2 rounded-xl">
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                <span className="text-sm font-bold text-primary-foreground">SK</span>
+                <span className="text-sm font-bold text-primary-foreground">{getUserInitials(user?.name)}</span>
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-semibold text-foreground">Prof. Dr. Santosh Kumar</p>
-                <p className="text-xs text-muted-foreground">Senior ED, UILAH</p>
+                <p className="text-sm font-semibold text-foreground">{user?.name}</p>
+                <p className="text-xs text-muted-foreground">{user?.role.charAt(0).toUpperCase() + user?.role.slice(1)} • {user?.institute}</p>
               </div>
               <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 shadow-lg border border-border/50">
             <div className="px-4 py-3 border-b border-border/50">
-              <p className="font-semibold text-foreground">Prof. Dr. Santosh Kumar</p>
-              <p className="text-xs text-muted-foreground">Senior ED, Liberal Arts & Humanities</p>
+              <p className="font-semibold text-foreground">{user?.name}</p>
+              <p className="text-xs text-muted-foreground">{user?.email}</p>
+              <p className="text-xs text-muted-foreground mt-1">{user?.institute}</p>
             </div>
             <DropdownMenuItem className="cursor-pointer hover:bg-secondary">
               <User className="w-4 h-4 mr-2" />
@@ -49,7 +69,11 @@ export function Header() {
               <span>Preferences</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer text-destructive hover:bg-red-50">
+            <DropdownMenuItem 
+              onClick={handleLogout}
+              className="cursor-pointer text-destructive hover:bg-red-50"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
               <span>Logout</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
