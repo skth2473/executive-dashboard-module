@@ -18,43 +18,91 @@ interface Department {
 const departments: Department[] = [
   {
     id: '1',
-    name: 'Engineering Foundation',
-    spoc: 'Dr. Vikas Wasson',
+    name: 'UITTR - Teachers Training & Research',
+    spoc: 'Dr. Neelam Sharma',
     spocDesignation: 'Director',
-    studentCount: 7500,
-    facultyCount: 180,
+    studentCount: 850,
+    facultyCount: 45,
   },
   {
     id: '2',
-    name: 'CSE - 2nd Year',
-    spoc: 'Dr. Puneet Kumar',
+    name: 'UID - Interior Design',
+    spoc: 'Prof. Rajesh Gupta',
     spocDesignation: 'Associate Director',
-    studentCount: 5000,
-    facultyCount: 120,
+    studentCount: 680,
+    facultyCount: 38,
   },
   {
     id: '3',
-    name: 'CSE - 3rd Year',
-    spoc: 'Dr. Sandeep Singh Kang',
+    name: 'UID - Industrial Design',
+    spoc: 'Dr. Priya Verma',
     spocDesignation: 'Associate Professor',
-    studentCount: 4500,
-    facultyCount: 115,
+    studentCount: 620,
+    facultyCount: 35,
   },
   {
     id: '4',
-    name: 'CSE - 4th Year',
-    spoc: 'Dr. Navpreet Kaur Walia',
+    name: 'UID - Fine Arts',
+    spoc: 'Prof. Vikram Singh',
     spocDesignation: 'Director',
-    studentCount: 4500,
-    facultyCount: 110,
+    studentCount: 450,
+    facultyCount: 28,
   },
   {
     id: '5',
-    name: 'Core Engineering',
-    spoc: 'Dr. Tripti Sharma',
+    name: 'UID - Fashion & Design',
+    spoc: 'Dr. Anjali Kapoor',
     spocDesignation: 'Associate Professor',
-    studentCount: 2500,
-    facultyCount: 75,
+    studentCount: 520,
+    facultyCount: 32,
+  },
+  {
+    id: '6',
+    name: 'UILAH - Liberal Arts & Humanities',
+    spoc: 'Prof. Dr. Santosh Kumar',
+    spocDesignation: 'Senior ED',
+    studentCount: 2100,
+    facultyCount: 98,
+  },
+  {
+    id: '7',
+    name: 'UIA - Architecture',
+    spoc: 'Dr. Mohit Patel',
+    spocDesignation: 'Director',
+    studentCount: 750,
+    facultyCount: 42,
+  },
+  {
+    id: '8',
+    name: 'UIFVA - Animation, VFX & Gaming',
+    spoc: 'Prof. Deepak Nair',
+    spocDesignation: 'Associate Director',
+    studentCount: 580,
+    facultyCount: 35,
+  },
+  {
+    id: '9',
+    name: 'UIFVA - Film Studies',
+    spoc: 'Dr. Pooja Desai',
+    spocDesignation: 'Associate Professor',
+    studentCount: 420,
+    facultyCount: 24,
+  },
+  {
+    id: '10',
+    name: 'UIMS - Media Studies',
+    spoc: 'Prof. Arun Kumar',
+    spocDesignation: 'Director',
+    studentCount: 680,
+    facultyCount: 38,
+  },
+  {
+    id: '11',
+    name: 'UITHM - Tourism & Hospitality Management',
+    spoc: 'Dr. Swati Singh',
+    spocDesignation: 'Associate Professor',
+    studentCount: 360,
+    facultyCount: 22,
   },
 ];
 
@@ -73,10 +121,10 @@ export default function ClusterOverview() {
             {/* Header */}
             <div className="mb-8">
               <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
-                Engineering Cluster Overview
+                Liberal Arts & Humanities Cluster Overview
               </h2>
               <p className="text-muted-foreground text-sm">
-                {departments.length} Departments - 40,000 Students & 1,200 Faculty Members
+                {departments.length} Departments across 7 Institutes - 8,500 Students & 380 Faculty Members
               </p>
             </div>
 

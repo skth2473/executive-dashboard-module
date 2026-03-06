@@ -10,9 +10,9 @@ export function Header() {
       <div className="flex items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Engineering Cluster Dashboard
+            Liberal Arts & Humanities Dashboard
           </h1>
-          <p className="text-xs text-muted-foreground mt-1">Chandigarh University Engineering Division</p>
+          <p className="text-xs text-muted-foreground mt-1">Chandigarh University - UILAH Cluster</p>
         </div>
       </div>
 
@@ -26,19 +26,19 @@ export function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="flex items-center gap-3 hover:bg-secondary transition-all duration-300 px-3 py-2 rounded-xl">
               <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                <span className="text-sm font-bold text-primary-foreground">SA</span>
+                <span className="text-sm font-bold text-primary-foreground">SK</span>
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-semibold text-foreground">Prof. Sachin Ahuja</p>
-                <p className="text-xs text-muted-foreground">Executive Director</p>
+                <p className="text-sm font-semibold text-foreground">Prof. Dr. Santosh Kumar</p>
+                <p className="text-xs text-muted-foreground">Senior ED, UILAH</p>
               </div>
               <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 shadow-lg border border-border/50">
             <div className="px-4 py-3 border-b border-border/50">
-              <p className="font-semibold text-foreground">Prof. Sachin Ahuja</p>
-              <p className="text-xs text-muted-foreground">Executive Director, Engineering Cluster</p>
+              <p className="font-semibold text-foreground">Prof. Dr. Santosh Kumar</p>
+              <p className="text-xs text-muted-foreground">Senior ED, Liberal Arts & Humanities</p>
             </div>
             <DropdownMenuItem className="cursor-pointer hover:bg-secondary">
               <User className="w-4 h-4 mr-2" />

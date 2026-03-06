@@ -26,10 +26,10 @@ export default function Dashboard() {
             <div className="flex items-start justify-between mb-8">
               <div>
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
-                  Welcome back, Prof. Sachin Ahuja
+                  Welcome back, Prof. Dr. Santosh Kumar
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                  Engineering Cluster Management Dashboard - Chandigarh University
+                  Liberal Arts & Humanities Cluster Management Dashboard - Chandigarh University
                 </p>
               </div>
               <div className="text-right hidden md:block">
@@ -49,49 +49,49 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <MetricCard
                 title="Total Students"
-                value="40,000"
+                value="8,500"
                 icon={<Users className="w-8 h-8" />}
-                trend={5.2}
+                trend={6.8}
                 variant="blue"
                 onClick={() => router.push('/cluster-overview')}
               />
               <MetricCard
                 title="Total Faculty"
-                value="1,200"
+                value="380"
                 icon={<BookOpen className="w-8 h-8" />}
-                trend={2.8}
+                trend={3.2}
                 variant="green"
                 onClick={() => router.push('/faculty-phd')}
               />
               <MetricCard
                 title="PhD Scholars"
-                value="500"
+                value="245"
                 icon={<Microscope className="w-8 h-8" />}
-                trend={-1.5}
+                trend={4.5}
                 variant="purple"
                 onClick={() => router.push('/research-projects')}
               />
               <MetricCard
                 title="Events"
-                value="450"
+                value="125"
                 icon={<Calendar className="w-8 h-8" />}
-                trend={12.3}
+                trend={9.3}
                 variant="orange"
                 onClick={() => router.push('/events')}
               />
               <MetricCard
                 title="Competitions"
-                value="150"
+                value="45"
                 icon={<Trophy className="w-8 h-8" />}
-                trend={8.5}
+                trend={7.1}
                 variant="pink"
                 onClick={() => router.push('/competitions')}
               />
               <MetricCard
                 title="Research Ongoing"
-                value="50"
+                value="62"
                 icon={<Building2 className="w-8 h-8" />}
-                trend={3.2}
+                trend={5.6}
                 variant="blue"
                 onClick={() => router.push('/research-projects')}
               />
