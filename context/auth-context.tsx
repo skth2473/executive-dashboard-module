@@ -8,6 +8,7 @@ export interface User {
   name: string;
   institute: string;
   department?: string;
+  stream?: string;
   role: 'admin' | 'hod' | 'faculty' | 'staff';
 }
 

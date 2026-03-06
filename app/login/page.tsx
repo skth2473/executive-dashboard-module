@@ -112,16 +112,22 @@ export default function LoginPage() {
             {/* Demo Credentials */}
             <div className="space-y-3">
               <div className="p-4 bg-blue-50/50 border border-blue-200/50 rounded-lg">
-                <p className="text-xs font-semibold text-blue-900 mb-2">Senior ED Account:</p>
+                <p className="text-xs font-semibold text-blue-900 mb-2">Senior ED Account (Santosh Kumar):</p>
                 <p className="text-xs text-blue-800">Email: <code className="bg-white px-2 py-1 rounded">santosh.kumar@uilah.edu.in</code></p>
                 <p className="text-xs text-blue-800">Password: <code className="bg-white px-2 py-1 rounded">demo123</code></p>
-                <p className="text-xs text-blue-700 mt-2">(Can view all departments)</p>
+                <p className="text-xs text-blue-700 mt-2">(View all 11 departments & aggregated data)</p>
               </div>
               <div className="p-4 bg-purple-50/50 border border-purple-200/50 rounded-lg">
-                <p className="text-xs font-semibold text-purple-900 mb-2">HOD Account Example:</p>
-                <p className="text-xs text-purple-800">Email: <code className="bg-white px-2 py-1 rounded">hod.uilah@cuims.edu.in</code></p>
-                <p className="text-xs text-purple-800">Password: <code className="bg-white px-2 py-1 rounded">demo123</code></p>
-                <p className="text-xs text-purple-700 mt-2">(Can only view their own department)</p>
+                <p className="text-xs font-semibold text-purple-900 mb-2">HOD Accounts (Generic Stream Names):</p>
+                <div className="space-y-2 mt-2">
+                  <p className="text-xs text-purple-800"><code className="bg-white px-2 py-1 rounded">hod_arts@uilah.edu.in</code> - Arts & Humanities</p>
+                  <p className="text-xs text-purple-800"><code className="bg-white px-2 py-1 rounded">hod_design@uilah.edu.in</code> - Interior Design</p>
+                  <p className="text-xs text-purple-800"><code className="bg-white px-2 py-1 rounded">hod_media@uilah.edu.in</code> - Media Studies</p>
+                  <p className="text-xs text-purple-800"><code className="bg-white px-2 py-1 rounded">hod_film@uilah.edu.in</code> - Film Studies</p>
+                  <p className="text-xs text-purple-800"><code className="bg-white px-2 py-1 rounded">hod_architecture@uilah.edu.in</code> - Architecture</p>
+                </div>
+                <p className="text-xs text-purple-700 mt-2">Password: <code className="bg-white px-2 py-1 rounded">demo123</code> (all accounts)</p>
+                <p className="text-xs text-purple-700">(Each HOD sees only their department data)</p>
               </div>
             </div>
           </form>

@@ -7,7 +7,7 @@ import { Sidebar } from '@/components/sidebar';
 import { Header } from '@/components/header';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Users, BookOpen, Edit2, TrendingUp, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Microscope, Users, Calendar, ArrowRight, TrendingUp, FileText } from 'lucide-react';
 
 export default function HODDashboard() {
   const router = useRouter();
@@ -31,23 +31,54 @@ export default function HODDashboard() {
       <div className="flex items-center justify-center h-screen bg-background">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-          <p className="text-muted-foreground">Loading HOD Dashboard...</p>
+          <p className="text-muted-foreground">Loading Dashboard...</p>
         </div>
       </div>
     );
   }
 
-  // Sample department data for HOD
-  const departmentData = {
-    name: user?.department || 'UILAH',
-    institute: user?.institute || 'University Institute of Liberal Arts and Humanities',
-    students: 2100,
-    faculty: 98,
-    scholars: 45,
-    events: 28,
-    programs: ['B.A (Hons)', 'M.A', 'Ph.D'],
-    specializations: ['English', 'Hindi', 'History', 'Political Science', 'Psychology', 'Sociology'],
-  };
+  const modules = [
+    {
+      id: 'academic-updates',
+      title: 'Academic Updates',
+      description: 'Submit weekly section-wise academic updates for Year 1, 2, and 3 students.',
+      icon: <BookOpen className="w-8 h-8" />,
+      color: 'bg-blue-50 border-blue-200',
+      textColor: 'text-blue-700',
+      href: '/hod-dashboard/academic-updates',
+      stats: { submitted: 0, pending: 3, sections: 3 },
+    },
+    {
+      id: 'research-projects',
+      title: 'Research Projects',
+      description: 'Manage research projects, PhD scholars, and supervisors. Track weekly updates.',
+      icon: <Microscope className="w-8 h-8" />,
+      color: 'bg-purple-50 border-purple-200',
+      textColor: 'text-purple-700',
+      href: '/hod-dashboard/research-projects',
+      stats: { total: 0, phd: 0, active: 0 },
+    },
+    {
+      id: 'events-management',
+      title: 'Events Management',
+      description: 'Event coordinators add events with descriptions, budgets, and outcomes.',
+      icon: <Calendar className="w-8 h-8" />,
+      color: 'bg-green-50 border-green-200',
+      textColor: 'text-green-700',
+      href: '/hod-dashboard/events-management',
+      stats: { upcoming: 0, completed: 0, coordinators: 1 },
+    },
+    {
+      id: 'department-analytics',
+      title: 'Department Analytics',
+      description: 'View aggregate analytics of student performance, faculty, and resources.',
+      icon: <TrendingUp className="w-8 h-8" />,
+      color: 'bg-orange-50 border-orange-200',
+      textColor: 'text-orange-700',
+      href: '/hod-dashboard/analytics',
+      stats: { students: 0, faculty: 0, programs: 0 },
+    },
+  ];
 
   return (
     <div className="flex h-screen bg-background">
@@ -55,171 +86,103 @@ export default function HODDashboard() {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
         <main className="flex-1 overflow-auto">
-          <div className="p-8 max-w-7xl mx-auto">
+          <div className="p-6">
             {/* Welcome Section */}
             <div className="mb-8">
-              <div className="mb-4">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
-                  Department Management Portal
-                </h2>
-                <p className="text-muted-foreground">
-                  {departmentData.name} • {departmentData.institute}
-                </p>
-              </div>
-
-              <div className="bg-blue-50/50 border border-blue-200/50 rounded-lg p-4 flex gap-3">
-                <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-blue-800">
-                  As HOD, you can manage and update all information for your department. Changes will be reflected in the main dashboard.
-                </p>
-              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent mb-2">
+                Department Portal
+              </h1>
+              <p className="text-muted-foreground text-base">
+                {user?.name} • {user?.department}
+              </p>
+              <p className="text-muted-foreground text-sm mt-1">
+                Manage academic updates, research projects, events, and view department analytics
+              </p>
             </div>
 
-            {/* Department Overview Cards */}
+            {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Total Students</p>
-                    <p className="text-3xl font-bold text-foreground">{departmentData.students}</p>
-                  </div>
-                  <Users className="w-8 h-8 text-primary/20" />
-                </div>
+              <Card className="p-4 bg-gradient-to-br from-blue-50 to-blue-50/50 border-blue-200/50">
+                <p className="text-xs font-semibold text-muted-foreground mb-1">Academic Updates</p>
+                <p className="text-2xl font-bold text-primary">0/3</p>
+                <p className="text-xs text-muted-foreground mt-1">Weekly submissions</p>
               </Card>
-
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Faculty Members</p>
-                    <p className="text-3xl font-bold text-foreground">{departmentData.faculty}</p>
-                  </div>
-                  <BookOpen className="w-8 h-8 text-green-600/20" />
-                </div>
+              <Card className="p-4 bg-gradient-to-br from-purple-50 to-purple-50/50 border-purple-200/50">
+                <p className="text-xs font-semibold text-muted-foreground mb-1">Research Projects</p>
+                <p className="text-2xl font-bold text-purple-700">0</p>
+                <p className="text-xs text-muted-foreground mt-1">Active projects</p>
               </Card>
-
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">PhD Scholars</p>
-                    <p className="text-3xl font-bold text-foreground">{departmentData.scholars}</p>
-                  </div>
-                  <TrendingUp className="w-8 h-8 text-purple-600/20" />
-                </div>
+              <Card className="p-4 bg-gradient-to-br from-green-50 to-green-50/50 border-green-200/50">
+                <p className="text-xs font-semibold text-muted-foreground mb-1">Events</p>
+                <p className="text-2xl font-bold text-green-700">0</p>
+                <p className="text-xs text-muted-foreground mt-1">Upcoming events</p>
               </Card>
-
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Events Conducted</p>
-                    <p className="text-3xl font-bold text-foreground">{departmentData.events}</p>
-                  </div>
-                  <CheckCircle2 className="w-8 h-8 text-orange-600/20" />
-                </div>
+              <Card className="p-4 bg-gradient-to-br from-orange-50 to-orange-50/50 border-orange-200/50">
+                <p className="text-xs font-semibold text-muted-foreground mb-1">Department</p>
+                <p className="text-2xl font-bold text-orange-700">4</p>
+                <p className="text-xs text-muted-foreground mt-1">Management modules</p>
               </Card>
             </div>
 
-            {/* Management Sections */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Programs & Specializations */}
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-foreground">Degree Programs</h3>
-                  <Button
-                    onClick={() => router.push('/hod-dashboard/manage/programs')}
-                    className="gap-2"
-                    size="sm"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                    Edit
-                  </Button>
-                </div>
-                <div className="space-y-2">
-                  {departmentData.programs.map((prog) => (
-                    <div key={prog} className="p-3 bg-secondary rounded-lg flex items-center justify-between">
-                      <span className="text-sm font-medium text-foreground">{prog}</span>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">Active</span>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Core Specializations */}
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-foreground">Specializations</h3>
-                  <Button
-                    onClick={() => router.push('/hod-dashboard/manage/specializations')}
-                    className="gap-2"
-                    size="sm"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                    Edit
-                  </Button>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  {departmentData.specializations.map((spec) => (
-                    <div key={spec} className="p-2 bg-secondary rounded text-sm text-foreground">
-                      {spec}
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* Faculty Management */}
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-foreground">Faculty & Staff</h3>
-                  <Button
-                    onClick={() => router.push('/hod-dashboard/manage/faculty')}
-                    className="gap-2"
-                    size="sm"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                    Manage
-                  </Button>
-                </div>
-                <p className="text-2xl font-bold text-primary mb-2">{departmentData.faculty}</p>
-                <p className="text-sm text-muted-foreground">
-                  Update faculty details, designations, and administrative officers
-                </p>
-              </Card>
-
-              {/* Student Information */}
-              <Card className="p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-foreground">Student Records</h3>
-                  <Button
-                    onClick={() => router.push('/hod-dashboard/manage/students')}
-                    className="gap-2"
-                    size="sm"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                    Manage
-                  </Button>
-                </div>
-                <p className="text-2xl font-bold text-primary mb-2">{departmentData.students}</p>
-                <p className="text-sm text-muted-foreground">
-                  Update student enrollment, achievements, and academic performance
-                </p>
-              </Card>
-            </div>
-
-            {/* Department Settings */}
-            <Card className="mt-6 p-6 bg-gradient-to-br from-card to-card/95 border border-border/50 shadow-md">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-1">Department Settings</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Manage SPOC, institute affiliation, and other department information
-                  </p>
-                </div>
-                <Button
-                  onClick={() => router.push('/hod-dashboard/manage/settings')}
-                  className="gap-2"
+            {/* Modules Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {modules.map((module) => (
+                <Card
+                  key={module.id}
+                  className={`p-6 border-2 hover:shadow-lg transition-all cursor-pointer ${module.color}`}
+                  onClick={() => router.push(module.href)}
                 >
-                  <Edit2 className="w-4 h-4" />
-                  Update Settings
-                </Button>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className={`p-3 rounded-lg bg-white ${module.textColor}`}>
+                      {module.icon}
+                    </div>
+                    <ArrowRight className={`w-5 h-5 ${module.textColor} opacity-50`} />
+                  </div>
+
+                  <h3 className={`text-xl font-bold ${module.textColor} mb-2`}>
+                    {module.title}
+                  </h3>
+                  <p className="text-sm text-foreground/80 mb-4">
+                    {module.description}
+                  </p>
+
+                  {/* Module Stats */}
+                  <div className="grid grid-cols-3 gap-3 pt-4 border-t border-current/10">
+                    {Object.entries(module.stats).map(([key, value]) => (
+                      <div key={key}>
+                        <p className="text-xs font-semibold text-foreground/60 uppercase mb-1">
+                          {key.replace(/_/g, ' ')}
+                        </p>
+                        <p className={`text-lg font-bold ${module.textColor}`}>
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    className="w-full mt-4 font-semibold"
+                    variant="outline"
+                  >
+                    Access Module
+                  </Button>
+                </Card>
+              ))}
+            </div>
+
+            {/* Info Box */}
+            <Card className="p-6 bg-blue-50/50 border-blue-200/50 mt-8">
+              <div className="flex gap-4">
+                <FileText className="w-5 h-5 text-blue-700 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-semibold text-blue-900 mb-1">Important Notes</h3>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    <li>• Weekly academic updates are aggregated and sent to Senior ED every Friday</li>
+                    <li>• Research project updates from PhD supervisors are synced weekly</li>
+                    <li>• Event coordinators can add events with budget tracking and outcome reporting</li>
+                    <li>• All data is automatically compiled in the departmental analytics dashboard</li>
+                  </ul>
+                </div>
               </div>
             </Card>
           </div>
