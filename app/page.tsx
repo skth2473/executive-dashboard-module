@@ -17,6 +17,8 @@ export default function Dashboard() {
     if (!loading) {
       if (!user) {
         router.replace('/login');
+      } else if (user.role === 'hod') {
+        router.replace('/hod-dashboard');
       } else {
         setIsReady(true);
       }
@@ -54,7 +56,7 @@ export default function Dashboard() {
                   Welcome back, {user?.name}
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                  Liberal Arts & Humanities Cluster Management Dashboard - {user?.institute} • Chandigarh University
+                  Liberal Arts & Humanities Cluster Management Dashboard {user?.role === 'admin' ? '- Cluster Overview' : '- Department Overview'} • Chandigarh University
                 </p>
               </div>
               <div className="text-right hidden md:block">

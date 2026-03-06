@@ -110,10 +110,19 @@ export default function LoginPage() {
             </Button>
 
             {/* Demo Credentials */}
-            <div className="p-4 bg-blue-50/50 border border-blue-200/50 rounded-lg">
-              <p className="text-xs font-semibold text-blue-900 mb-2">Demo Credentials:</p>
-              <p className="text-xs text-blue-800">Email: <code className="bg-white px-2 py-1 rounded">admin@cuims.edu.in</code></p>
-              <p className="text-xs text-blue-800">Password: <code className="bg-white px-2 py-1 rounded">demo123</code></p>
+            <div className="space-y-3">
+              <div className="p-4 bg-blue-50/50 border border-blue-200/50 rounded-lg">
+                <p className="text-xs font-semibold text-blue-900 mb-2">Senior ED Account:</p>
+                <p className="text-xs text-blue-800">Email: <code className="bg-white px-2 py-1 rounded">santosh.kumar@uilah.edu.in</code></p>
+                <p className="text-xs text-blue-800">Password: <code className="bg-white px-2 py-1 rounded">demo123</code></p>
+                <p className="text-xs text-blue-700 mt-2">(Can view all departments)</p>
+              </div>
+              <div className="p-4 bg-purple-50/50 border border-purple-200/50 rounded-lg">
+                <p className="text-xs font-semibold text-purple-900 mb-2">HOD Account Example:</p>
+                <p className="text-xs text-purple-800">Email: <code className="bg-white px-2 py-1 rounded">hod.uilah@cuims.edu.in</code></p>
+                <p className="text-xs text-purple-800">Password: <code className="bg-white px-2 py-1 rounded">demo123</code></p>
+                <p className="text-xs text-purple-700 mt-2">(Can only view their own department)</p>
+              </div>
             </div>
           </form>
 

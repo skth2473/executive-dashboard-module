@@ -27,6 +27,8 @@ export default function RegisterPage() {
     password: '',
     confirmPassword: '',
     institute: 'UILAH',
+    role: 'faculty',
+    department: 'UILAH',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -144,6 +146,40 @@ export default function RegisterPage() {
                 ))}
               </select>
             </div>
+
+            {/* Role Select */}
+            <div>
+              <label className="block text-sm font-semibold text-foreground mb-2">
+                Role
+              </label>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all cursor-pointer"
+              >
+                <option value="faculty">Faculty Member</option>
+                <option value="hod">HOD (Head of Department)</option>
+                <option value="staff">Administrative Staff</option>
+              </select>
+            </div>
+
+            {/* Department Input */}
+            {formData.role === 'hod' && (
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">
+                  Department Name
+                </label>
+                <input
+                  type="text"
+                  name="department"
+                  value={formData.department}
+                  onChange={handleChange}
+                  placeholder="e.g., UILAH - Liberal Arts & Humanities"
+                  className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                />
+              </div>
+            )}
 
             {/* Password Input */}
             <div>

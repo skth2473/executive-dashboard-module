@@ -7,7 +7,8 @@ export interface User {
   email: string;
   name: string;
   institute: string;
-  role: 'admin' | 'faculty' | 'staff';
+  department?: string;
+  role: 'admin' | 'hod' | 'faculty' | 'staff';
 }
 
 interface AuthContextType {
