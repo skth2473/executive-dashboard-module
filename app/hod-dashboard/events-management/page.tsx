@@ -58,19 +58,23 @@ export default function EventsManagementPage() {
         setEvents(result.data || []);
         setDbError(null);
       } else {
-        if (result.error?.includes('Could not find the table')) {
+        if (result.setupUrl) {
+          setDbError('Database tables not initialized. Redirecting to setup in 2 seconds...');
+          setTimeout(() => {
+            router.push(result.setupUrl);
+          }, 2000);
+        } else if (result.error?.includes('Database not initialized') || result.error?.includes('Could not find the table')) {
           setDbError('Database tables not initialized. Please run the setup first.');
+          setTimeout(() => {
+            router.push('/admin/setup-events');
+          }, 2000);
         } else {
           setDbError(result.error || 'Failed to load events');
         }
       }
     } catch (error: any) {
       console.error('Failed to fetch events:', error);
-      if (error.message?.includes('Could not find the table')) {
-        setDbError('Database tables not initialized. Please run the setup first.');
-      } else {
-        setDbError('Failed to load events. Please try again.');
-      }
+      setDbError('Failed to load events. Please try again.');
     } finally {
       setIsLoading(false);
     }

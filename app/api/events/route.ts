@@ -31,13 +31,35 @@ export async function GET(req: NextRequest) {
 
     const { data, error } = await query.order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      // Check if error is about missing tables
+      if (error.message?.includes('Could not find the table') || error.code === 'PGRST205') {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: 'Database tables not initialized',
+            details: 'Please visit /admin/setup-events to initialize the events database',
+            setupUrl: '/admin/setup-events'
+          },
+          { status: 503 }
+        );
+      }
+      throw error;
+    }
 
     return NextResponse.json({ success: true, data });
   } catch (error: any) {
+    const errorMessage = error.message || 'An error occurred';
+    const isInitError = errorMessage.includes('Could not find the table') || errorMessage.includes('PGRST205');
+    
     return NextResponse.json(
-      { success: false, error: error.message },
-      { status: 500 }
+      { 
+        success: false, 
+        error: isInitError ? 'Database not initialized' : errorMessage,
+        details: isInitError ? 'Visit /admin/setup-events to initialize' : undefined,
+        setupUrl: isInitError ? '/admin/setup-events' : undefined
+      },
+      { status: isInitError ? 503 : 500 }
     );
   }
 }

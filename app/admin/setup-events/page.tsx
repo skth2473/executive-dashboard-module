@@ -8,6 +8,7 @@ export default function SetupEventsPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  const [showManualSQL, setShowManualSQL] = useState(false);
 
   const handleSetupDatabase = async () => {
     setLoading(true);
@@ -92,8 +93,32 @@ export default function SetupEventsPage() {
             </ul>
           </div>
 
+          <div className="pt-4 border-t border-border">
+            <button
+              onClick={() => setShowManualSQL(!showManualSQL)}
+              className="text-xs text-primary hover:underline font-semibold"
+            >
+              {showManualSQL ? 'Hide' : 'Show'} Manual SQL Option
+            </button>
+          </div>
+
+          {showManualSQL && (
+            <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-xs font-semibold text-amber-900 mb-2">Alternative: Manual Setup</p>
+              <ol className="text-xs text-amber-800 space-y-2 list-decimal list-inside">
+                <li>Go to your Supabase Dashboard</li>
+                <li>Click "SQL Editor" in the left sidebar</li>
+                <li>Click "New Query"</li>
+                <li>Open <code className="bg-white px-1 py-0.5 rounded">/scripts/events-migration.sql</code></li>
+                <li>Copy the entire SQL content</li>
+                <li>Paste it in the Supabase SQL editor</li>
+                <li>Click "Run" to execute</li>
+              </ol>
+            </div>
+          )}
+
           <p className="text-xs text-muted-foreground text-center">
-            After setup, you can use the events management system at /hod-dashboard/events-management
+            After setup, navigate to <code className="bg-gray-100 px-1 py-0.5 rounded">/hod-dashboard/events-management</code>
           </p>
         </div>
       </div>
